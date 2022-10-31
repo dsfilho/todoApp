@@ -42,17 +42,47 @@ public class TaskController {
             statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
             statement.execute();
         } catch (Exception ex) {
-            throw new RunTimeException ("Erro ao salvar a tarefa"
-            +ex.getMessage(),ex);
-        }finally{
-        
-        ConnectionFactory.closeConnection(connection,statement);
-        
-    }
+            throw new RunTimeException("Erro ao salvar a tarefa"
+                    + ex.getMessage(), ex);
+        } finally {
+
+            ConnectionFactory.closeConnection(connection, statement);
+
+        }
 
     }
 
     public void update(Task task) {
+
+        String sql = "UPDATE tasks SET"
+                + "idProject=?,"
+                + "name=?,"
+                + "description=?,"
+                + "notes=?,"
+                + "completed=?,"
+                + "deadline=?,"
+                + "createdAt=?,"
+                + "updatedAt=?"
+                + "WHERE id=?";
+
+        Connection connection = null;
+        PreparedStatement statment = null;
+
+        try {
+            connection = ConnectionFactory.getConnection();
+            statment = connection.prepareStatement(sql);
+            statment.setInt(1, task.getIdProject());
+            statment.setString(2, task.getName());
+            statment.setString(3, task.getDescription());
+            statment.setString(4, task.getNotes());
+            statment.setBoolean(5, task.isIsCompleted());
+            statment.setDate(6, new Date(task.getCreatedAt().getTime()));
+            statment.setDate(7, new Date(task.getUpdatedAt().getTime()));
+            statment.execute();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao atualizar a tarefa", e);
+        }
 
     }
 
@@ -75,7 +105,7 @@ public class TaskController {
 
         } finally {
 
-            ConnectionFactory.closeConnection(connection,statement);
+            ConnectionFactory.closeConnection(connection, statement);
         }
 
     }
