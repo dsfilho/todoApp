@@ -3,7 +3,9 @@ package controller;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import model.Task;
 import util.ConnectionFactory;
@@ -78,6 +80,8 @@ public class TaskController {
             statment.setBoolean(5, task.isIsCompleted());
             statment.setDate(6, new Date(task.getCreatedAt().getTime()));
             statment.setDate(7, new Date(task.getUpdatedAt().getTime()));
+            statment.setDate(8, new Date(task.getDeadline().getTime()));
+            statment.setInt(9, task.getId());
             statment.execute();
 
         } catch (Exception e) {
@@ -110,9 +114,45 @@ public class TaskController {
 
     }
 
-    public List<Task> getAll(int idProject) {
+    public List<Task> getAll(int idProject) throws SQLException, RunTimeException {
+        String sql = "SELECT * FROM task WHERE idProject =?";
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
 
-        return null;
+        List<Task> tasks = new ArrayList<Task>();
+
+        try {
+
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, idProject);
+            resultSet = statement.executeQuery();
+            
+            while(resultSet.next()){
+                
+                Task task = new Task();
+                task.setId(resultSet.getInt("id"));
+                task.setIdProject(resultSet.getInt("idProject"));
+                task.setName(resultSet.getString("name"));
+                task.setDescription(resultSet.getString("description"));
+                task.setNotes(resultSet.getString("notes"));
+                task.setIsCompleted(resultSet.getBoolean("completed"));
+                task.setDeadline(resultSet.getDate("deadline"));
+                task.setCreatedAt(resultSet.getDate("createdAt"));
+                task.setUpdatedAt(resultSet.getDate("updatedAt"));
+                
+                tasks.add(task);
+            }
+
+        } catch (Exception e) {
+               throw new RuntimeException("Erro ao listar as tarefas", e);
+
+        }finally{
+            ConnectionFactory.closeConnection(connection, statement,resultSet);
+        }
+
+        return tasks;
 
     }
 
