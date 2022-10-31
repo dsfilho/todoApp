@@ -19,7 +19,7 @@ public class TaskController {
 
     public void save(Task task) throws SQLException, RunTimeException {
 
-        String sql = "INSERT INTO TASK("
+        String sql = "INSERT INTO tasks ("
                 + "idProject, "
                 + "name,"
                 + "description,"
@@ -27,7 +27,7 @@ public class TaskController {
                 + "notes,"
                 + "deadline,"
                 + "createdAt,"
-                + "updatedAt VALUES(?,?,?,?,?,?,?,?)";
+                + "updatedAt) VALUES(?,?,?,?,?,?,?,?)";
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -43,9 +43,10 @@ public class TaskController {
             statement.setDate(7, new Date(task.getCreatedAt().getTime()));
             statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
             statement.execute();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
+            System.out.println("Sql: "+sql);
             throw new RunTimeException("Erro ao salvar a tarefa"
-                    + ex.getMessage(), ex);
+                    , ex);
         } finally {
 
             ConnectionFactory.closeConnection(connection, statement);
@@ -56,7 +57,7 @@ public class TaskController {
 
     public void update(Task task) {
 
-        String sql = "UPDATE tasks SET"
+        String sql = "UPDATE tasks SET "
                 + "idProject=?,"
                 + "name=?,"
                 + "description=?,"
@@ -64,7 +65,7 @@ public class TaskController {
                 + "completed=?,"
                 + "deadline=?,"
                 + "createdAt=?,"
-                + "updatedAt=?"
+                + "updatedAt=? "
                 + "WHERE id=?";
 
         Connection connection = null;
@@ -85,6 +86,7 @@ public class TaskController {
             statment.execute();
 
         } catch (Exception e) {
+            System.out.println("Sql: "+sql);             
             throw new RuntimeException("Erro ao atualizar a tarefa", e);
         }
 

@@ -20,11 +20,11 @@ public class ProjectController {
     
     public void save(Project project) throws SQLException, RunTimeException {
 
-        String sql = "INSERT INTO projects("
+        String sql = "INSERT INTO projects ("
                 + "name,"
                 + "description,"
                 + "createdAt,"
-                + "updatedAt VALUES(?,?,?,?)";
+                + "updatedAt) VALUES(?,?,?,?)";
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -34,13 +34,14 @@ public class ProjectController {
             statement.setString(1, project.getName());
             statement.setString(2, project.getDescription());
             statement.setDate(3, new Date(project.getCreatedAt().getTime()));
-            statement.setDate(4, new Date(project.getCreatedAt().getTime()));
+            statement.setDate(4, new Date(project.getUpdatedAt().getTime()));
             statement.execute();
         } catch (Exception ex) {
-            throw new RunTimeException("Erro ao salvar o projeto. "
-                    + ex.getMessage(), ex);
+            throw new SQLException("Erro ao salvar o projeto. "
+                    , ex);
+            
         } finally {
-
+        
             ConnectionFactory.closeConnection(connection, statement);
 
         }
@@ -49,7 +50,7 @@ public class ProjectController {
 
     public void update(Project project) {
 
-        String sql = "UPDATE projects SET"
+        String sql = "UPDATE projects SET "
                 + "name=?,"
                 + "description=?,"
                 + "createdAt=?,"
@@ -70,7 +71,9 @@ public class ProjectController {
             statement.execute();
 
         } catch (Exception e) {
+            System.out.println("sql: "+sql);
             throw new RuntimeException("Erro ao atualizar o projeto", e);
+            
         }
 
     }
@@ -100,7 +103,7 @@ public class ProjectController {
     }
 
     public List<Project> getAll() throws SQLException, RunTimeException {
-        String sql = "SELECT * FROM projects WHERE";
+        String sql = "SELECT * FROM projects";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;

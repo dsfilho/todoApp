@@ -15,8 +15,9 @@ import java.sql.ResultSet;
  */
 public class ConnectionFactory {
 
-    public static final String DRIVER = "com.mysql.jdbc.Driver";
-    public static final String URL = "jdbc:mysql://sql527.main-hosting.eu:3306/u206807805_todoApp";
+    //public static final String DRIVER = "com.mysql.jdbc.Driver"; 
+   public static final String DRIVER =  "com.mysql.cj.jdbc.Driver";
+    public static final String URL = "jdbc:mysql://156.67.64.6:3306/u206807805_todoApp";
     public static final String USER = "u206807805_tdapuser";
     public static final String PASSWORD = "SE:*iA0N*7a";
 

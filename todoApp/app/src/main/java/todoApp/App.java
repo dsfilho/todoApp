@@ -3,12 +3,68 @@
  */
 package todoApp;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import controller.ProjectController;
+import controller.TaskController;
+import java.sql.Date;
+import java.sql.SQLException;
+import model.Project;
+import model.Task;
+import util.RunTimeException;
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+public class App {
+    /*public String getGreeting() {
+        return "Hello World!";
+    }*/
+
+    public static void main(String[] args) throws SQLException, RunTimeException {
+        
+        TaskController tc = new TaskController();
+        Task task = new Task();
+        
+        /*task.setIdProject(6);
+        task.setName("Minha tarefa 01");
+        task.setDescription("A descrição da tarefa");
+        task.setIsCompleted(false);
+        task.setNotes("Nota da tarefa");
+        task.setDeadline(new Date(task.getDeadline().getTime()));
+        task.setCreatedAt(new Date(task.getCreatedAt().getTime()));
+        task.setUpdatedAt(new Date(task.getUpdatedAt().getTime()));
+        
+        tc.save(task);*/
+        /*task.setIdProject(6);
+        task.setName("Minha tarefa 01 atualizada");
+        task.setDescription("A descrição da tarefa up");
+        task.setIsCompleted(true);
+        task.setNotes("Nota da tarefa up");
+        task.setDeadline(new Date(task.getDeadline().getTime()));
+        task.setCreatedAt(new Date(task.getCreatedAt().getTime()));
+        task.setUpdatedAt(new Date(task.getUpdatedAt().getTime()));
+        task.setId(1);
+        
+        tc.update(task);*/
+        
+        /*tc.removeById(1);
+        
+       /* 
+        ProjectController pc = new ProjectController();
+        Project project =new Project();
+        
+        project.setName("Primeiro Projeto");
+        project.setDescription("Uma descrição de projeto");
+                pc.save(project);
+               
+
+         /*project.setId(5);
+         project.setName("Primeiro Projeto atualizado");
+        project.setDescription("Uma descrição de projeto");
+        project.setCreatedAt(new Date(project.getCreatedAt().getTime()));
+        project.setUpdatedAt(new Date(project.getUpdatedAt().getTime()));
+        pc.update(project);*/
+         
+         /*pc.removeById(5);*/
+         
+         //System.out.println("Total de projetos: "+pc.getAll().size());
+                 
+                 
     }
 }

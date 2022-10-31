@@ -17,8 +17,7 @@ public class Task {
     private Date updatedAt;
     private Date deadline;
 
-    public Task(int id, int idProject, String name, String description, String notes, boolean isCompleted, Date createdAt, Date updatedAt, Date deadline) {
-        this.id = id;
+    public Task(int idProject, String name, String description, String notes, boolean isCompleted, Date createdAt, Date updatedAt, Date deadline) {
         this.idProject = idProject;
         this.name = name;
         this.description = description;
@@ -31,6 +30,8 @@ public class Task {
     
     public Task(){
         this.createdAt = new Date();
+         this.updatedAt = new Date();
+         this.deadline = new Date();
     }
 
     public Date getDeadline() {
