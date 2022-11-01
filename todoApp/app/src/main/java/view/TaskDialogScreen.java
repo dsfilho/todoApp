@@ -65,6 +65,11 @@ public class TaskDialogScreen extends javax.swing.JDialog {
                 jLabelToolbarSaveMouseClicked(evt);
             }
         });
+        jLabelToolbarSave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jLabelToolbarSaveKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelToolBarLayout = new javax.swing.GroupLayout(jPanelToolBar);
         jPanelToolBar.setLayout(jPanelToolBarLayout);
@@ -179,7 +184,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         
         try {
             Task task = new Task();
-            task.setIdProject(6);
+            task.setIdProject(project.getId());
             task.setName((jTextFieldName.getText()));
             task.setDescription(jTextAreaDescription.getText());
             task.setNotes(jTextAreaNotes.getText());
@@ -203,6 +208,10 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         
         this.dispose();
     }//GEN-LAST:event_jLabelToolbarSaveMouseClicked
+
+    private void jLabelToolbarSaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabelToolbarSaveKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelToolbarSaveKeyTyped
 
     /**
      * @param args the command line arguments
