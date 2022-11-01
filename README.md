@@ -4,6 +4,7 @@ TodoApp - Task Control
 1. Linguagem Utilizada: JAVA
 2. Banco Dados : Mysql
 3. Padrão de Projeto: MVC
+4. Gerenciador de Depêndencia: Gradle
 
 Aplicativo para gerenciamento de Porjetos/Tarefas  codificado em JAVA. A aplicaçõa permite realizar o cadastro de projetos e suas tarefas.
 <p align="center">
