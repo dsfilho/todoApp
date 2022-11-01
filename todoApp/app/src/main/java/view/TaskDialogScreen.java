@@ -183,24 +183,28 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         
         
         try {
-            Task task = new Task();
-            task.setIdProject(project.getId());
-            task.setName((jTextFieldName.getText()));
-            task.setDescription(jTextAreaDescription.getText());
-            task.setNotes(jTextAreaNotes.getText());
-            task.setIsCompleted(false);
-            
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date deadLine =null;
-            deadLine = dateFormat.parse(jFormattedTextFieldDeadLine.getText());
-            
-            task.setDeadline(deadLine);
-            task.setIsCompleted(false);
-            
-            controller.save(task);
-            
-            JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");
-            
+            if(jTextFieldName.getText().isEmpty() || jFormattedTextFieldDeadLine.getText().isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "Um ou mais campos não foram preenchidos!");
+            }else{
+                Task task = new Task();
+                task.setIdProject(project.getId());
+                task.setName((jTextFieldName.getText()));
+                task.setDescription(jTextAreaDescription.getText());
+                task.setNotes(jTextAreaNotes.getText());
+                task.setIsCompleted(false);
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Date deadLine =null;
+                deadLine = dateFormat.parse(jFormattedTextFieldDeadLine.getText());
+
+                task.setDeadline(deadLine);
+                task.setIsCompleted(false);
+
+                controller.save(task);
+
+                JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");
+                this.dispose();
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         } catch (RunTimeException ex) {
@@ -209,7 +213,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
         
-        this.dispose();
+        
     }//GEN-LAST:event_jLabelToolbarSaveMouseClicked
 
     private void jLabelToolbarSaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabelToolbarSaveKeyTyped
