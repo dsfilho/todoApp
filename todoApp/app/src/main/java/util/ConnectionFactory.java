@@ -17,9 +17,9 @@ public class ConnectionFactory {
 
     //public static final String DRIVER = "com.mysql.jdbc.Driver"; 
    public static final String DRIVER =  "com.mysql.cj.jdbc.Driver";
-    public static final String URL = "jdbc:mysql://localhost:3306/NOME_BANCO";
-    public static final String USER = "USUARIO_BANCO";
-    public static final String PASSWORD = "SENHA_BANCO";
+    public static final String URL = "jdbc:mysql://156.67.64.6:3306/u206807805_todoApp";
+    public static final String USER = "u206807805_tdapuser";
+    public static final String PASSWORD = "SE:*iA0N*7a";
 
     public static Connection getConnection() throws RunTimeException {
         try {
