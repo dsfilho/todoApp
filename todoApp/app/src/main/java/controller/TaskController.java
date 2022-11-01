@@ -117,7 +117,7 @@ public class TaskController {
     }
 
     public List<Task> getAll(int idProject) throws SQLException, RunTimeException {
-        String sql = "SELECT * FROM task WHERE idProject =?";
+        String sql = "SELECT * FROM tasks WHERE idProject =?";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -148,6 +148,7 @@ public class TaskController {
             }
 
         } catch (Exception e) {
+           
                throw new RuntimeException("Erro ao listar as tarefas", e);
 
         }finally{
