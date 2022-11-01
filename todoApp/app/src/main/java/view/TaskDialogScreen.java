@@ -194,6 +194,9 @@ public class TaskDialogScreen extends javax.swing.JDialog {
             Date deadLine =null;
             deadLine = dateFormat.parse(jFormattedTextFieldDeadLine.getText());
             
+            task.setDeadline(deadLine);
+            task.setIsCompleted(false);
+            
             controller.save(task);
             
             JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");
